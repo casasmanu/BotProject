@@ -21,6 +21,7 @@ bot.onText(/^\/manito/, function (msg) {
   bot.sendMessage(chatId, "MANITOOOO" + nameUser);
 });
 
+
 bot.onText(/^\/clima (.+)/, function (msg, match) {
   var chatId = msg.chat.id;
   var ciudad = match[1];
