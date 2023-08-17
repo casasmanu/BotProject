@@ -3,18 +3,16 @@ from bs4 import BeautifulSoup
 
 
 def btc_scraping():
-    # link de la fuente
+    # Link of the web used
     start_url = 'https://www.infodolar.com/cotizacion-dolar-blue.aspx'
-    # descargo la info en html de la pagina y la parseo
+    # download the info in htm type and process it
     downloaded_html = requests.get(start_url)
     soup = BeautifulSoup(downloaded_html.text, "html.parser")
-    # busco el selector deseado y lo convierto en string para su uso
+    # search for the selected selector and convert it to string so we use it
     full_table = soup.select('table.cotizaciones td')[2]
     string = full_table.text.split()
     string = string[0] + string[1]
 
     format_result = string
-    print(format_result)
-    # print(format_result)
     return format_result
 
