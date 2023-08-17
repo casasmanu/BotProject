@@ -12,7 +12,6 @@ def btc_scraping():
     full_table = soup.select('table.cotizaciones td')[2]
     string = full_table.text.split()
     string = string[0] + string[1]
-
     format_result = string
     return format_result
 

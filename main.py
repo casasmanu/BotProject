@@ -14,7 +14,6 @@ arrUsers=[]
 
 for i in data["users"]:
     arrUsers.append(i)
-print(arrUsers)
 
 # we are reading the token from the environmental variables of the OS
 file= open('settings.json')
