@@ -37,12 +37,10 @@ def checkDolar():
             bot_send_msg(user["id"],str(usd_prize))
 
 # After every 5 to 10mins in between run work()
-schedule.every(5).minutes.do(checkDolar)
+schedule.every(1).minutes.do(checkDolar)
 
 while True:
     # Checks whether a scheduled task
     # is pending to run or not
-    #bot.infinity_polling()
-    checkDolar()
     schedule.run_pending()
     time.sleep(1)
