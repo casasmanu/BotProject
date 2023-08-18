@@ -12,8 +12,9 @@ env/Scripts/Activate.ps1 //In Powershel
 another usefull commands
 pip list
 pip freeze > requirements.txt
-pip install -r requirements.txt'
+pip install -r requirements.txt
 
 #usefull links used in this project
 
 https://www.geeksforgeeks.org/python-schedule-library/
+

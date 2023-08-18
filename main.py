@@ -5,15 +5,21 @@ import schedule
 import time
 import asyncio
 
-usuarios={}
-usuarios['manu']='5178063489'
 usd_prize=0
-users_file= open('destinatorsList.json')
-data=json.load(users_file)
 arrUsers=[]
 
-for i in data["users"]:
-    arrUsers.append(i)
+#update destinatary
+def updateDestinataryList():
+    global arrUsers
+    arrTempUsers=[]
+    users_file= open('destinatorsList.json')
+    data=json.load(users_file)
+    for i in data["users"]:
+        arrTempUsers.append(i)
+
+    if len(arrTempUsers)!=len(arrUsers):
+        arrUsers=arrTempUsers
+
 
 # we are reading the token from the environmental variables of the OS
 file= open('settings.json')
@@ -37,7 +43,8 @@ def checkDolar():
             bot_send_msg(user["id"],str(usd_prize))
 
 # After every 5 to 10mins in between run work()
-schedule.every(1).minutes.do(checkDolar)
+schedule.every(5).minutes.do(checkDolar)
+schedule.every(1).hours.do(updateDestinataryList)
 
 while True:
     # Checks whether a scheduled task
