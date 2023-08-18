@@ -20,6 +20,7 @@ def updateDestinataryList():
     if len(arrTempUsers)!=len(arrUsers):
         arrUsers=arrTempUsers
 
+updateDestinataryList()
 
 # we are reading the token from the environmental variables of the OS
 file= open('settings.json')
