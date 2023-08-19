@@ -17,4 +17,3 @@ pip install -r requirements.txt
 #usefull links used in this project
 
 https://www.geeksforgeeks.org/python-schedule-library/
-
