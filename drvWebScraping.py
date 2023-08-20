@@ -10,8 +10,6 @@ def btc_scraping():
     soup = BeautifulSoup(downloaded_html.text, "html.parser")
     # search for the selected selector and convert it to string so we use it
     full_table = soup.select('table.cotizaciones td')[2]
-    string = full_table.text.split()
-    string = string[0] + string[1]
-    format_result = string
-    return format_result
-
+    full_string = full_table.text.split()
+    prize = float(full_string[1].replace(',','.'))
+    return prize
