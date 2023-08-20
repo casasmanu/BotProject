@@ -65,7 +65,7 @@ def checkDolar():
                   'Precio VENTA obtenido de infodolar')
         for user in arrUsers:
             textUser='hola, '+user[0]+' ,querido usuario te actualizo el precio dolar al ultimo valor: \n' +text
-            #bot_send_msg(BOT_TOKEN, user[1], str(usd_prize))
+            bot_send_msg(BOT_TOKEN, user[1], str(usd_prize))
             print(textUser)
     
     #update usd prize
