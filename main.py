@@ -52,11 +52,24 @@ def checkDolar():
     global usd_prize
     global arrUsers
     act_prize = btc_scraping()
-    if act_prize != usd_prize:
-        usd_prize = act_prize
-        # update dolar for every registered user
+    if (act_prize) != (usd_prize):
+    #prepare message and update dolar for every registered user
+        text=''
+        if (act_prize) > (usd_prize):
+            text=('$'+str(act_prize)+
+                  ' - SUBIO \n'
+                  'Precio venta obtenido de infodolar')
+        elif (act_prize) < (usd_prize):
+            text=('$'+str(act_prize)+
+                  ' - BAJO \n'
+                  'Precio venta obtenido de infodolar')
         for user in arrUsers:
-            bot_send_msg(BOT_TOKEN, user[1], str(usd_prize))
+            textUser='hola, '+user[0]+' ,querido usuario te actualizo el precio dolar al ultimo valor: \n' +text
+            #bot_send_msg(BOT_TOKEN, user[1], str(usd_prize))
+            print(textUser)
+    
+    #update usd prize
+    usd_prize = act_prize
 
 
 # we are reading the token from the environmental variables of the OS, load initial settings
@@ -64,6 +77,9 @@ file = open('settings.json')
 settings = json.load(file)
 BOT_TOKEN = settings['TOKEN']
 updateDestinataryList()
+
+#TESTING FUNCTION
+checkDolar()
 
 # After every 5 to 10mins in between run work()
 schedule.every(5).minutes.do(checkDolar)
