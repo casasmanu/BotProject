@@ -58,11 +58,11 @@ def checkDolar():
         if (act_prize) > (usd_prize):
             text=('$'+str(act_prize)+
                   ' - SUBIO \n'
-                  'Precio venta obtenido de infodolar')
+                  'Precio VENTA obtenido de infodolar')
         elif (act_prize) < (usd_prize):
             text=('$'+str(act_prize)+
                   ' - BAJO \n'
-                  'Precio venta obtenido de infodolar')
+                  'Precio VENTA obtenido de infodolar')
         for user in arrUsers:
             textUser='hola, '+user[0]+' ,querido usuario te actualizo el precio dolar al ultimo valor: \n' +text
             #bot_send_msg(BOT_TOKEN, user[1], str(usd_prize))
@@ -77,9 +77,6 @@ file = open('settings.json')
 settings = json.load(file)
 BOT_TOKEN = settings['TOKEN']
 updateDestinataryList()
-
-#TESTING FUNCTION
-checkDolar()
 
 # After every 5 to 10mins in between run work()
 schedule.every(5).minutes.do(checkDolar)
