@@ -8,6 +8,20 @@ from helperText import prepareText
 
 usd_prize = 0
 arrUsers = []
+BOT_TOKEN=""
+settings=json.__loader__
+
+def loadInitConfig():
+    # we are reading the token from the environmental variables of the OS, load initial settings
+    global BOT_TOKEN
+    global settings
+    global act_prize
+    file = open('settings.json')
+    settings = json.load(file)
+    BOT_TOKEN = settings['TOKEN']
+    updateDestinataryList()
+    act_prize = btc_scraping()
+    return
 
 
 # update destinatary list
@@ -63,14 +77,11 @@ def checkDolar():
     usd_prize = act_prize
 
 
-# we are reading the token from the environmental variables of the OS, load initial settings
-file = open('settings.json')
-settings = json.load(file)
-BOT_TOKEN = settings['TOKEN']
-updateDestinataryList()
+
+loadInitConfig()
 
 # After every 5 to 10mins in between run work()
-schedule.every(5).minutes.do(checkDolar)
+schedule.every(3).minutes.do(checkDolar)
 schedule.every(1).hours.do(updateDestinataryList)
 while True:
     # Checks whether a scheduled task
