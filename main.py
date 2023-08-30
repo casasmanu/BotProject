@@ -4,9 +4,24 @@ import schedule
 import time
 from drvTelegram import bot_send_msg, getNewUsers
 import numpy as np
+from helperText import prepareText
 
 usd_prize = 0
 arrUsers = []
+BOT_TOKEN=""
+settings=json.__loader__
+
+def loadInitConfig():
+    # we are reading the token from the environmental variables of the OS, load initial settings
+    global BOT_TOKEN
+    global settings
+    global act_prize
+    file = open('settings.json')
+    settings = json.load(file)
+    BOT_TOKEN = settings['TOKEN']
+    updateDestinataryList()
+    act_prize = btc_scraping()
+    return
 
 
 # update destinatary list
@@ -54,32 +69,20 @@ def checkDolar():
     act_prize = btc_scraping()
     if (act_prize) != (usd_prize):
     #prepare message and update dolar for every registered user
-        text=''
-        if (act_prize) > (usd_prize):
-            text=('$'+str(act_prize)+
-                  ' - SUBIO \n'
-                  'Precio VENTA obtenido de infodolar')
-        elif (act_prize) < (usd_prize):
-            text=('$'+str(act_prize)+
-                  ' - BAJO \n'
-                  'Precio VENTA obtenido de infodolar')
         for user in arrUsers:
-            textUser='hola, '+user[0]+' ,querido usuario te actualizo el precio dolar al ultimo valor: \n' +text
-            bot_send_msg(BOT_TOKEN, user[1], textUser)
+            text=prepareText((act_prize) > (usd_prize),user[0],act_prize)
+            bot_send_msg(BOT_TOKEN, user[1], text)
     
     #update usd prize
     usd_prize = act_prize
 
 
-# we are reading the token from the environmental variables of the OS, load initial settings
-file = open('settings.json')
-settings = json.load(file)
-BOT_TOKEN = settings['TOKEN']
-updateDestinataryList()
+
+loadInitConfig()
 
 # After every 5 to 10mins in between run work()
-schedule.every(5).minutes.do(checkDolar)
-schedule.every(12).hours.do(updateDestinataryList)
+schedule.every(3).minutes.do(checkDolar)
+schedule.every(1).hours.do(updateDestinataryList)
 while True:
     # Checks whether a scheduled task
     # is pending to run or not
