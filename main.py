@@ -15,12 +15,12 @@ def loadInitConfig():
     # we are reading the token from the environmental variables of the OS, load initial settings
     global BOT_TOKEN
     global settings
-    global act_prize
+    global usd_prize
     file = open('settings.json')
     settings = json.load(file)
     BOT_TOKEN = settings['TOKEN']
     updateDestinataryList()
-    act_prize = btc_scraping()
+    usd_prize = btc_scraping()
     return
 
 
