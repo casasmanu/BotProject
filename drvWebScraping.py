@@ -12,8 +12,12 @@ def btc_scraping():
         # search for the selected selector and convert it to string so we use it
         full_table = soup.select('table.cotizaciones td')[2]
         full_string = full_table.text.split()
-        prize = float(full_string[1].replace(',','.'))
+        value=full_string[1].replace('.','')
+        #prize = float(full_string[1].replace('.',''))
+        prize = float(value.replace(',','.'))
     except:
         return ""
 
     return prize
+
+btc_scraping()
