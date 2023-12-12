@@ -16,7 +16,7 @@ def loadInitConfig():
     global BOT_TOKEN
     global settings
     global usd_prize
-    file = open('settings.json')
+    file = open('config/settings.json')
     settings = json.load(file)
     BOT_TOKEN = settings['TOKEN']
     updateDestinataryList()
@@ -30,7 +30,7 @@ def updateDestinataryList():
     global jsonUsers
     arrTempUsers = []
     # read the json file and update the variable
-    users_file = open('destinatorsList.txt', 'r+',encoding='utf-8')
+    users_file = open('config/destinatorsList.txt', 'r+',encoding='utf-8')
     users_lines = users_file.readlines()
     users_file.close()
     #################################################
@@ -83,6 +83,7 @@ loadInitConfig()
 # After every 5 to 10mins in between run work()
 schedule.every(3).minutes.do(checkDolar)
 schedule.every(1).hours.do(updateDestinataryList)
+
 while True:
     # Checks whether a scheduled task
     # is pending to run or not
