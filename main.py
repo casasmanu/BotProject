@@ -29,7 +29,7 @@ def updateDestinataryList():
     global arrUsers
     global jsonUsers
     arrTempUsers = []
-    # read the json file and update the variable
+    # read the json file and update the variable 
     users_file = open('config/destinatorsList.txt', 'r+',encoding='utf-8')
     users_lines = users_file.readlines()
     users_file.close()
