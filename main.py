@@ -54,7 +54,7 @@ def updateDestinataryList():
     # in the txt and then replace the variable
     filterData=np.unique(filterData,axis=0)
     ############ WRITE VARIABLE IN THE TXT ########
-    users_file = open('destinatorsList.txt', 'w',encoding='utf-8')
+    users_file = open('config/destinatorsList.txt', 'w',encoding='utf-8')
     for line in filterData:
         users_file.write(" ".join(line) + "\n")
     users_file.close()
