@@ -29,6 +29,9 @@ def updateDestinataryList():
     global arrUsers
     global jsonUsers
     arrTempUsers = []
+    arrNewTelegramUsers=[]
+    ids=[]
+
     # read the json file and update the variable 
     users_file = open('config/destinatorsList.txt', 'r+',encoding='utf-8')
     users_lines = users_file.readlines()
@@ -38,10 +41,13 @@ def updateDestinataryList():
     for i in users_lines:
         text = i.replace('\n', '')
         tupla = text.split(' ')
+        if tupla[0]=='':
+            continue
         arrTempUsers.append(tupla)
 
     ####### then read the requests for new users#######
     arrNewTelegramUsers = getNewUsers(BOT_TOKEN)
+
 
     ids = [row[1] for row in arrTempUsers]
     ######### append - unify both lists ##############
