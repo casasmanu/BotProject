@@ -77,7 +77,11 @@ def checkDolar():
     #prepare message and update dolar for every registered user
         for user in arrUsers:
             text=prepareText((act_prize) > (usd_prize),user[0],act_prize)
-            bot_send_msg(BOT_TOKEN, user[1], text)
+            try:
+                bot_send_msg(BOT_TOKEN, user[1], text)
+            except Exception as err:
+                print("error while trying to send message to "+ user[1])
+                print(f"Unexpected {err=}, {type(err)=}")
     
     #update usd prize
     usd_prize = act_prize
